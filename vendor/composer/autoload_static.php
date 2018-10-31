@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
+class ComposerStaticInit54aff63a8bb2c4e055ed029ef9a2d590
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -28,7 +28,6 @@ class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\Cache\\' => 24,
-            'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
         ),
         'P' => 
@@ -37,11 +36,6 @@ class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
-            'PhpParser\\' => 10,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'A' => 
         array (
@@ -111,10 +105,6 @@ class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
         ),
-        'Symfony\\Bundle\\MakerBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
-        ),
         'Symfony\\Bundle\\FrameworkBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/framework-bundle',
@@ -135,14 +125,6 @@ class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
-        'PhpParser\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
-        ),
-        'Doctrine\\Common\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
-        ),
         'App\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -156,8 +138,8 @@ class ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit75733bdda72aa2e0d0e04668f61577e0::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit54aff63a8bb2c4e055ed029ef9a2d590::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit54aff63a8bb2c4e055ed029ef9a2d590::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

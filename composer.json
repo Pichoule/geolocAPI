@@ -11,8 +11,7 @@
         "symfony/yaml": "*"
     },
     "require-dev": {
-        "symfony/dotenv": "*",
-        "symfony/maker-bundle": "^1.8"
+        "symfony/dotenv": "*"
     },
     "config": {
         "preferred-install": {
