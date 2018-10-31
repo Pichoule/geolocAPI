@@ -17,7 +17,7 @@ class Place
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\category", inversedBy="places")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="places")
      */
     private $category_id;
 
@@ -52,7 +52,7 @@ class Place
     private $longitude;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="places")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="places")
      */
     private $user_id;
 

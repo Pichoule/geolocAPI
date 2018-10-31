@@ -61,6 +61,99 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             $canonicalMethod = 'GET';
         }
 
+        switch ($pathinfo) {
+            case '/category/':
+                // categorycategory
+                $ret = array('_route' => 'categorycategory', '_controller' => 'App\\Controller\\CategoryController::index');
+                if (!isset(($a = array('GET' => 0))[$canonicalMethod])) {
+                    $allow += $a;
+                    goto not_categorycategory;
+                }
+
+                return $ret;
+                not_categorycategory:
+                // categorycategory_create
+                $ret = array('_route' => 'categorycategory_create', '_controller' => 'App\\Controller\\CategoryController::category_create');
+                if (!isset(($a = array('POST' => 0))[$requestMethod])) {
+                    $allow += $a;
+                    goto not_categorycategory_create;
+                }
+
+                return $ret;
+                not_categorycategory_create:
+                break;
+            default:
+                $routes = array(
+                    '/place' => array(array('_route' => 'place', '_controller' => 'App\\Controller\\PlaceController::index'), null, null, null),
+                    '/' => array(array('_route' => 'place_create', '_controller' => 'App\\Controller\\PlaceController::place_create'), null, array('POST' => 0), null),
+                    '/user' => array(array('_route' => 'user', '_controller' => 'App\\Controller\\UserController::index'), null, null, null),
+                );
+
+                if (!isset($routes[$pathinfo])) {
+                    break;
+                }
+                list($ret, $requiredHost, $requiredMethods, $requiredSchemes) = $routes[$pathinfo];
+
+                $hasRequiredScheme = !$requiredSchemes || isset($requiredSchemes[$context->getScheme()]);
+                if ($requiredMethods && !isset($requiredMethods[$canonicalMethod]) && !isset($requiredMethods[$requestMethod])) {
+                    if ($hasRequiredScheme) {
+                        $allow += $requiredMethods;
+                    }
+                    break;
+                }
+                if (!$hasRequiredScheme) {
+                    $allowSchemes += $requiredSchemes;
+                    break;
+                }
+
+                return $ret;
+        }
+
+        $matchedPathinfo = $pathinfo;
+        $regexList = array(
+            0 => '{^(?'
+                    .'|/category/([^/]++)(?'
+                        .'|(*:28)'
+                    .')'
+                .')$}sD',
+        );
+
+        foreach ($regexList as $offset => $regex) {
+            while (preg_match($regex, $matchedPathinfo, $matches)) {
+                switch ($m = (int) $matches['MARK']) {
+                    case 28:
+                        $matches = array('id' => $matches[1] ?? null);
+
+                        // categorycategory_update
+                        $ret = $this->mergeDefaults(array('_route' => 'categorycategory_update') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_update'));
+                        if (!isset(($a = array('PUT' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_categorycategory_update;
+                        }
+
+                        return $ret;
+                        not_categorycategory_update:
+
+                        // categorycategory_delete
+                        $ret = $this->mergeDefaults(array('_route' => 'categorycategory_delete') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_delete'));
+                        if (!isset(($a = array('DELETE' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_categorycategory_delete;
+                        }
+
+                        return $ret;
+                        not_categorycategory_delete:
+
+                        break;
+                }
+
+                if (28 === $m) {
+                    break;
+                }
+                $regex = substr_replace($regex, 'F', $m - $offset, 1 + strlen($m));
+                $offset += strlen($m);
+            }
+        }
         if ('/' === $pathinfo && !$allow && !$allowSchemes) {
             throw new Symfony\Component\Routing\Exception\NoConfigurationException();
         }
