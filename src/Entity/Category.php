@@ -24,7 +24,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="categories")
      */
     private $user_id;
 
