@@ -270,7 +270,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id=".service_locator.5JYvEcC"/>
+      <argument type="service" id=".service_locator.Xlnhynb"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -1726,13 +1726,41 @@
         <argument key="category" type="service" id=".errored..service_locator.koD3dBr.App\Entity\Category"/>
       </argument>
     </service>
-    <service id=".service_locator.5JYvEcC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Y69F8Hv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="place" type="service" id=".errored..service_locator.Y69F8Hv.App\Entity\Place"/>
+      </argument>
+    </service>
+    <service id=".service_locator.iuuVGtK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service" id=".errored..service_locator.iuuVGtK.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Xlnhynb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CategoryController::category_delete" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\CategoryController::category_id" type="service" id=".service_locator.koD3dBr"/>
         <argument key="App\Controller\CategoryController::category_update" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\PlaceController::place_delete" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController::place_id" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController::place_update" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController::places_category_id" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\UserController::user_delete" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\UserController::user_id" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\UserController::user_update" type="service" id=".service_locator.iuuVGtK"/>
         <argument key="App\Controller\CategoryController:category_delete" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\CategoryController:category_id" type="service" id=".service_locator.koD3dBr"/>
         <argument key="App\Controller\CategoryController:category_update" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\PlaceController:place_delete" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController:place_id" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController:place_update" type="service" id=".service_locator.Y69F8Hv"/>
+        <argument key="App\Controller\PlaceController:places_category_id" type="service" id=".service_locator.koD3dBr"/>
+        <argument key="App\Controller\UserController:user_delete" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\UserController:user_id" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\UserController:user_update" type="service" id=".service_locator.iuuVGtK"/>
       </argument>
     </service>
     <service id=".service_locator.gmwRZ3h" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -1799,6 +1827,8 @@
       <factory service=".service_locator.tdKlFgs" method="withContext"/>
     </service>
     <service id=".errored..service_locator.koD3dBr.App\Entity\Category" class="App\Entity\Category"/>
+    <service id=".errored..service_locator.Y69F8Hv.App\Entity\Place" class="App\Entity\Place"/>
+    <service id=".errored..service_locator.iuuVGtK.App\Entity\User" class="App\Entity\User"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id=".service_locator.fXnOscr"/>
       <argument type="collection">
@@ -1956,7 +1986,7 @@
     <service id="doctrine.orm.default_result_cache" alias="doctrine_cache.providers.doctrine.orm.default_result_cache" public="true"/>
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache" public="true"/>
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.5JYvEcC"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Xlnhynb"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>
     <service id=".service_locator.AoifO_3" alias=".2_ServiceLocator~60hNVQQ" public="false"/>
     <service id="console.command.public_alias.doctrine_cache.contains_command" alias="doctrine_cache.contains_command" public="true"/>

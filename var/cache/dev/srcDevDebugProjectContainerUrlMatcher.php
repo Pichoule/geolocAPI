@@ -62,31 +62,49 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         switch ($pathinfo) {
-            case '/category/':
-                // categorycategory
-                $ret = array('_route' => 'categorycategory', '_controller' => 'App\\Controller\\CategoryController::index');
+            case '/category':
+                // category
+                $ret = array('_route' => 'category', '_controller' => 'App\\Controller\\CategoryController::index');
                 if (!isset(($a = array('GET' => 0))[$canonicalMethod])) {
                     $allow += $a;
-                    goto not_categorycategory;
+                    goto not_category;
                 }
 
                 return $ret;
-                not_categorycategory:
-                // categorycategory_create
-                $ret = array('_route' => 'categorycategory_create', '_controller' => 'App\\Controller\\CategoryController::category_create');
+                not_category:
+                // category_create
+                $ret = array('_route' => 'category_create', '_controller' => 'App\\Controller\\CategoryController::category_create');
                 if (!isset(($a = array('POST' => 0))[$requestMethod])) {
                     $allow += $a;
-                    goto not_categorycategory_create;
+                    goto not_category_create;
                 }
 
                 return $ret;
-                not_categorycategory_create:
+                not_category_create:
+                break;
+            case '/place':
+                // place
+                $ret = array('_route' => 'place', '_controller' => 'App\\Controller\\PlaceController::index');
+                if (!isset(($a = array('GET' => 0))[$canonicalMethod])) {
+                    $allow += $a;
+                    goto not_place;
+                }
+
+                return $ret;
+                not_place:
+                // place_create
+                $ret = array('_route' => 'place_create', '_controller' => 'App\\Controller\\PlaceController::place_create');
+                if (!isset(($a = array('POST' => 0))[$requestMethod])) {
+                    $allow += $a;
+                    goto not_place_create;
+                }
+
+                return $ret;
+                not_place_create:
                 break;
             default:
                 $routes = array(
-                    '/place' => array(array('_route' => 'place', '_controller' => 'App\\Controller\\PlaceController::index'), null, null, null),
-                    '/' => array(array('_route' => 'place_create', '_controller' => 'App\\Controller\\PlaceController::place_create'), null, array('POST' => 0), null),
-                    '/user' => array(array('_route' => 'user', '_controller' => 'App\\Controller\\UserController::index'), null, null, null),
+                    '/user' => array(array('_route' => 'useruser_create', '_controller' => 'App\\Controller\\UserController::user_create'), null, array('POST' => 0), null),
                 );
 
                 if (!isset($routes[$pathinfo])) {
@@ -115,6 +133,17 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     .'|/category/([^/]++)(?'
                         .'|(*:28)'
                     .')'
+                    .'|/place/(?'
+                        .'|([^/]++)(*:54)'
+                        .'|category/([^/]++)(*:78)'
+                        .'|([^/]++)(?'
+                            .'|(*:96)'
+                            .'|/([^/]++)/([^/]++)(*:121)'
+                        .')'
+                    .')'
+                    .'|/user/([^/]++)(?'
+                        .'|(*:148)'
+                    .')'
                 .')$}sD',
         );
 
@@ -124,30 +153,126 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     case 28:
                         $matches = array('id' => $matches[1] ?? null);
 
-                        // categorycategory_update
-                        $ret = $this->mergeDefaults(array('_route' => 'categorycategory_update') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_update'));
+                        // category_id
+                        $ret = $this->mergeDefaults(array('_route' => 'category_id') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_id'));
+                        if (!isset(($a = array('GET' => 0))[$canonicalMethod])) {
+                            $allow += $a;
+                            goto not_category_id;
+                        }
+
+                        return $ret;
+                        not_category_id:
+
+                        // category_update
+                        $ret = $this->mergeDefaults(array('_route' => 'category_update') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_update'));
                         if (!isset(($a = array('PUT' => 0))[$requestMethod])) {
                             $allow += $a;
-                            goto not_categorycategory_update;
+                            goto not_category_update;
                         }
 
                         return $ret;
-                        not_categorycategory_update:
+                        not_category_update:
 
-                        // categorycategory_delete
-                        $ret = $this->mergeDefaults(array('_route' => 'categorycategory_delete') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_delete'));
+                        // category_delete
+                        $ret = $this->mergeDefaults(array('_route' => 'category_delete') + $matches, array('_controller' => 'App\\Controller\\CategoryController::category_delete'));
                         if (!isset(($a = array('DELETE' => 0))[$requestMethod])) {
                             $allow += $a;
-                            goto not_categorycategory_delete;
+                            goto not_category_delete;
                         }
 
                         return $ret;
-                        not_categorycategory_delete:
+                        not_category_delete:
 
                         break;
+                    case 96:
+                        $matches = array('id' => $matches[1] ?? null);
+
+                        // place_update
+                        $ret = $this->mergeDefaults(array('_route' => 'place_update') + $matches, array('_controller' => 'App\\Controller\\PlaceController::place_update'));
+                        if (!isset(($a = array('PUT' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_place_update;
+                        }
+
+                        return $ret;
+                        not_place_update:
+
+                        // place_delete
+                        $ret = $this->mergeDefaults(array('_route' => 'place_delete') + $matches, array('_controller' => 'App\\Controller\\PlaceController::place_delete'));
+                        if (!isset(($a = array('DELETE' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_place_delete;
+                        }
+
+                        return $ret;
+                        not_place_delete:
+
+                        break;
+                    case 148:
+                        $matches = array('id' => $matches[1] ?? null);
+
+                        // useruser
+                        $ret = $this->mergeDefaults(array('_route' => 'useruser') + $matches, array('_controller' => 'App\\Controller\\UserController::user_id'));
+                        if (!isset(($a = array('GET' => 0))[$canonicalMethod])) {
+                            $allow += $a;
+                            goto not_useruser;
+                        }
+
+                        return $ret;
+                        not_useruser:
+
+                        // useruser_delete
+                        $ret = $this->mergeDefaults(array('_route' => 'useruser_delete') + $matches, array('_controller' => 'App\\Controller\\UserController::user_delete'));
+                        if (!isset(($a = array('DELETE' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_useruser_delete;
+                        }
+
+                        return $ret;
+                        not_useruser_delete:
+
+                        // useruser_update
+                        $ret = $this->mergeDefaults(array('_route' => 'useruser_update') + $matches, array('_controller' => 'App\\Controller\\UserController::user_update'));
+                        if (!isset(($a = array('PUT' => 0))[$requestMethod])) {
+                            $allow += $a;
+                            goto not_useruser_update;
+                        }
+
+                        return $ret;
+                        not_useruser_update:
+
+                        break;
+                    default:
+                        $routes = array(
+                            54 => array(array('_route' => 'place_id', '_controller' => 'App\\Controller\\PlaceController::place_id'), array('id'), array('GET' => 0), null),
+                            78 => array(array('_route' => 'places_category_id', '_controller' => 'App\\Controller\\PlaceController::places_category_id'), array('id'), array('GET' => 0), null),
+                            121 => array(array('_route' => 'place_in_range', '_controller' => 'App\\Controller\\PlaceController::GetPlacesInRange'), array('latitude', 'longitude', 'range'), array('GET' => 0), null),
+                        );
+
+                        list($ret, $vars, $requiredMethods, $requiredSchemes) = $routes[$m];
+
+                        foreach ($vars as $i => $v) {
+                            if (isset($matches[1 + $i])) {
+                                $ret[$v] = $matches[1 + $i];
+                            }
+                        }
+
+                        $hasRequiredScheme = !$requiredSchemes || isset($requiredSchemes[$context->getScheme()]);
+                        if ($requiredMethods && !isset($requiredMethods[$canonicalMethod]) && !isset($requiredMethods[$requestMethod])) {
+                            if ($hasRequiredScheme) {
+                                $allow += $requiredMethods;
+                            }
+                            break;
+                        }
+                        if (!$hasRequiredScheme) {
+                            $allowSchemes += $requiredSchemes;
+                            break;
+                        }
+
+                        return $ret;
                 }
 
-                if (28 === $m) {
+                if (148 === $m) {
                     break;
                 }
                 $regex = substr_replace($regex, 'F', $m - $offset, 1 + strlen($m));

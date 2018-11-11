@@ -11,12 +11,12 @@ use App\Entity\Category;
 
 
 /**
-* @Route("/category", name="category")
+* @Route("/category")
 */
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/", name="category", methods="GET")
+     * @Route("", name="category", methods="GET")
      */
     public function index(): JsonResponse
     {
@@ -39,7 +39,7 @@ class CategoryController extends AbstractController
 
 
      /**
-     * @Route("/", name="category_create", methods="POST")
+     * @Route("", name="category_create", methods="POST")
      */
     public function category_create(Request $request): JsonResponse
     {
@@ -60,6 +60,27 @@ class CategoryController extends AbstractController
             ];
         $code = JsonResponse::HTTP_CREATED;
 
+        $json = json_encode($data, JSON_UNESCAPED_UNICODE);
+        return new JsonResponse($json, $code, [], true);
+    }
+
+    /**
+     * @Route("/{id}", name="category_id", methods="GET")
+     */
+    public function category_id(Category $category): JsonResponse
+    {
+        if(is_null($category)) {
+           $data = [];
+           $code = JsonResponse::HTTP_NOT_FOUND;
+        } else {
+            $data = [
+                'id' => $category->getId(),
+                'nom' => $category->getName(),
+                'user_id' => $category->getUserId()
+            ];
+        }
+
+        $code = JsonResponse::HTTP_OK;
         $json = json_encode($data, JSON_UNESCAPED_UNICODE);
         return new JsonResponse($json, $code, [], true);
     }
